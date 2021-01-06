@@ -1,0 +1,45 @@
+create (papa:Person{firstname:'Johann',lastname:'Antensteiner'});
+create (mama:Person{firstname:'Elfriede',lastname:'Antensteiner'});
+create (i:Person{firstname:'Thomas',lastname:'Antensteiner'});
+create (christina:Person{firstname:'Christina',lastname:'Antensteiner'});
+create (johanna:Person{firstname:'Johanna',lastname:'Antensteiner'});
+create (barbara:Person{firstname:'Barbara',lastname:'Antensteiner'});
+create (andrea:Person{firstname:'Andrea',lastname:'Seiberl'});
+create (martin:Person{firstname:'Martin',lastname:'Antensteiner'});
+
+create (hermann:Person{firstname:'Hermann',lastname:'Seiberl'});
+create (lisa:Person{firstname:'Elisabeth',lastname:'Antensteiner'});
+
+create (jonas:Person{firstname:'Jonas'});
+create (sebastian:Person{firstname:'Sebastian',lastname:'Mayr'});
+
+
+create (i)-[:childOf{since:'11.07.2001'}]->(mama);
+create (i)-[:childOf{since:'11.07.2001'}]->(papa);
+create (christina)-[:childOf]->(papa);
+create (christina)-[:childOf]->(mama);
+
+{
+  "statements" : [ 
+		
+		{"statement" :"MATCH (n) DETACH DELETE n"},
+		{"statement" :"create (papa:Person{firstname:'Johann',lastname:'Antensteiner'});"},
+		{"statement" :"create (mama:Person{firstname:'Elfriede',lastname:'Antensteiner'});"},
+		{"statement" :"create (i:Person{firstname:'Thomas',lastname:'Antensteiner'});"},
+		{"statement" :"create (christina:Person{firstname:'Christina',lastname:'Antensteiner'});"},
+		{"statement" :"create (johanna:Person{firstname:'Johanna',lastname:'Antensteiner'});"},
+		{"statement" :"create (barbara:Person{firstname:'Barbara',lastname:'Antensteiner'});"},
+		{"statement" :"create (andrea:Person{firstname:'Andrea',lastname:'Seiberl'});"},
+		{"statement" :"create (martin:Person{firstname:'Martin',lastname:'Antensteiner'});"},
+		
+		{"statement" :"create (hermann:Person{firstname:'Hermann',lastname:'Seiberl'});"},
+		{"statement" :"create (lisa:Person{firstname:'Elisabeth',lastname:'Antensteiner'});"},
+		{"statement" :"create (jonas:Person{firstname:'Jonas'});"},
+		{"statement" :"create (sebastian:Person{firstname:'Sebastian',lastname:'Mayr'});"},
+		
+		{"statement" :"MATCH (a:Person),(b:Person) WHERE a.firstname = 'Thomas' AND b.firstname = 'Elfriede' create (a)-[:childOf{since:'11.07.2001'}]->(b);"},
+		{"statement" :"MATCH (a:Person),(b:Person) WHERE a.firstname = 'Thomas' AND b.firstname = 'Johann' create (a)-[:childOf{since:'11.07.2001'}]->(b);"},
+		{"statement" :"MATCH (a:Person),(b:Person) WHERE a.firstname = 'Christina' AND b.firstname = 'Elfriede' create (a)-[:childOf]->(b);"},
+		{"statement" :"MATCH(p1:Person {firstname:'Christina'}) MATCH(p2:Person {firstname:'Johann'}) create (p1)-[:childOf]->(p2);"}
+  ]
+}

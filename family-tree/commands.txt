@@ -1,0 +1,29 @@
+delete
+
+MATCH (n) DETACH DELETE n
+
+get all
+
+  match (n) return n
+
+
+
+docker run \
+  --name familyTree \
+  -p7474:7474 -p7687:7687 \
+  -v $HOME/neo4j/data:/data \
+  -v $HOME/neo4j/logs:/logs \
+  -v $HOME/neo4j/conf:/conf \
+  --env NEO4J_AUTH=neo4j/passme \
+  neo4j:latest
+
+
+C:\Users\thoma\neo4j\data
+
+
+docker run --name familyTree -p7474:7474 -p7687:7687 -v $HOME/neo4j/data:/data -v $HOME/neo4j/logs:/logs -v $HOME/neo4j/import:/var/lib/neo4j/import --env NEO4J_AUTH=neo4j/passme neo4j:latest
+
+docker exec -it familyTree sh
+cypher-shell
+
+neo4j passme
