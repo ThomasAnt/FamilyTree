@@ -1,8 +1,0 @@
-version: '2'
-services:
-    config-server:
-        container_name: familyApi
-        build:
-            context: ./family-API
-        ports:
-            - 8081:8080
